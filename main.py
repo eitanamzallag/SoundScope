@@ -1,14 +1,15 @@
 import os
-from flask import Flask, session, url_for, request, redirect
+from flask import Flask, session, url_for, request, redirect, render_template
 from dotenv import load_dotenv
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import FlaskSessionCacheHandler
+from helpers import *
 
 load_dotenv()
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
+context = {} # variables to pass to the html file
 
 client_id = os.getenv('client_id')
 client_secret = os.getenv('client_secret')
@@ -25,23 +26,16 @@ sp_oauth = SpotifyOAuth(client_id=client_id,
 
 sp = Spotify(auth_manager=sp_oauth)
 
-def check_login(mainpage):
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-        auth_url = sp_oauth.get_authorize_url()
-        return redirect(auth_url)
-    return redirect(url_for(mainpage))
-
 @app.route('/')
 def home():
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-        auth_url = sp_oauth.get_authorize_url()
-        return redirect(auth_url)
+    check_token(sp_oauth, cache_handler)
     return redirect(url_for('top_stats'))
 
 @app.route('/callback')
 def callback():
-    sp_oauth.get_access_token(request.args['code'])
+    sp_oauth.get_cached_token()
     return redirect(url_for('top_stats'))
+
 
 @app.route('/top_stats')
 def top_stats():
@@ -49,12 +43,17 @@ def top_stats():
         auth_url = sp_oauth.get_authorize_url()
         return redirect(auth_url)
 
-    top_artists = sp.current_user_top_artists(limit=10)
-    artists = [artist['name'] for artist in top_artists['items']]
-    top_tracks = sp.current_user_top_tracks(limit=10)
-    tracks = [track['name'] for track in top_tracks['items']]
-    all = artists + tracks
-    return all
+    username, photo_url = get_user_data(sp)
+
+    artists, tracks = get_top_artists_tracks(sp)
+    context = {
+        'username' : username,
+        'photo_url' : photo_url,
+        'artists' : artists,
+        'tracks' : tracks
+    }
+
+    return render_template('index.html', **context)
 
 if __name__ == '__main__':
     app.run(debug=True)
