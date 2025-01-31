@@ -1,5 +1,11 @@
 from flask import redirect
 
+def check_token(sp_oauth, cache_handler):
+    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
+
+
 def get_user_data(sp):
     all = sp.current_user()
     username = sp.current_user()['display_name']
@@ -14,9 +20,10 @@ def get_top_artists_tracks(sp):
     tracks = [track['name'] for track in top_tracks['items']]
     return artists, tracks
 
+def get_popularity(sp, lim):
+    sum = 0
+    top_tracks = sp.current_user_top_tracks(limit=lim)
+    for track in top_tracks['items']:
+        sum += track['popularity']
 
-def check_token(sp_oauth, cache_handler):
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-        auth_url = sp_oauth.get_authorize_url()
-        return redirect(auth_url)
-    return None
+    return int((sum/lim))

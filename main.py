@@ -7,9 +7,9 @@ from spotipy.cache_handler import FlaskSessionCacheHandler
 from helpers import *
 
 load_dotenv()
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
-context = {} # variables to pass to the html file
 
 client_id = os.getenv('client_id')
 client_secret = os.getenv('client_secret')
@@ -28,14 +28,15 @@ sp = Spotify(auth_manager=sp_oauth)
 
 @app.route('/')
 def home():
-    check_token(sp_oauth, cache_handler)
+    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
     return redirect(url_for('top_stats'))
 
 @app.route('/callback')
 def callback():
-    sp_oauth.get_cached_token()
+    sp_oauth.get_access_token(request.args['code'])
     return redirect(url_for('top_stats'))
-
 
 @app.route('/top_stats')
 def top_stats():
@@ -44,15 +45,15 @@ def top_stats():
         return redirect(auth_url)
 
     username, photo_url = get_user_data(sp)
-
+    popularity = get_popularity(sp, 50)
     artists, tracks = get_top_artists_tracks(sp)
     context = {
         'username' : username,
         'photo_url' : photo_url,
         'artists' : artists,
-        'tracks' : tracks
+        'tracks' : tracks,
+        'popularity' : popularity
     }
-
     return render_template('index.html', **context)
 
 if __name__ == '__main__':
