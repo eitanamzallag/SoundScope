@@ -46,11 +46,11 @@ def top_stats():
 
     username, photo_url = get_user_data(sp)
     popularity = get_popularity(sp, 50)
-    artists, tracks = get_top_artists_tracks(sp)
+    artists_photos, tracks = get_top_artists_tracks(sp)
     context = {
         'username' : username,
         'photo_url' : photo_url,
-        'artists' : artists,
+        'artists_photos' : artists_photos,
         'tracks' : tracks,
         'popularity' : popularity
     }

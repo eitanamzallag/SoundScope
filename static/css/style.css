@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 body {
     display: flex;
     flex-direction: column;
+    font-family: 'Inter', sans-serif;
 }
 
 .user {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    padding: 50px
 }

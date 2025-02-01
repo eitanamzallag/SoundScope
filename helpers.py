@@ -15,10 +15,15 @@ def get_user_data(sp):
 
 def get_top_artists_tracks(sp):
     top_artists = sp.current_user_top_artists(limit=10)
-    artists = [artist['name'] for artist in top_artists['items']]
+    artists_photos = {}
+    for i in top_artists['items']:
+        artist = i['name']
+        photo = i['images'][2]['url']
+        print(photo)
+        artists_photos[artist] = photo
     top_tracks = sp.current_user_top_tracks(limit=10)
     tracks = [track['name'] for track in top_tracks['items']]
-    return artists, tracks
+    return artists_photos, tracks
 
 def get_popularity(sp, lim):
     sum = 0
@@ -27,3 +32,4 @@ def get_popularity(sp, lim):
         sum += track['popularity']
 
     return int((sum/lim))
+
