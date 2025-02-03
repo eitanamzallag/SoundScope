@@ -1,9 +1,15 @@
+html, body {
+    height: 100%; /* Ensures the body and html take up the full viewport height */
+    margin: 0;    /* Removes default browser margin */
+    background-color: #f2f0ef; /* Sets your desired background color */
+}
+
 .user {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    padding: 20px;
 }
 
 .user-info {
