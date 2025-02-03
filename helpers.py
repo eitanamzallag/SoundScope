@@ -1,4 +1,5 @@
 from flask import redirect
+import requests
 
 def check_token(sp_oauth, cache_handler):
     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
@@ -35,4 +36,3 @@ def get_popularity(sp, lim):
         sum += track['popularity']
 
     return int((sum/lim))
-
