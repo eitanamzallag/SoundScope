@@ -46,15 +46,15 @@ def top_stats():
 
     username, photo_url = get_user_data(sp)
     popularity = get_popularity(sp, 50)
-    artists_photos, tracks = get_top_artists_tracks(sp)
+    artists_photos, tracks_photos = get_top_artists_tracks(sp)
     context = {
         'username' : username,
         'photo_url' : photo_url,
         'artists_photos' : artists_photos,
-        'tracks' : tracks,
+        'tracks_photos' : tracks_photos,
         'popularity' : popularity
     }
     return render_template('index.html', **context)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5001, debug=True)
