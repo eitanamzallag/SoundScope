@@ -26,34 +26,45 @@ sp_oauth = SpotifyOAuth(client_id=client_id,
 
 sp = Spotify(auth_manager=sp_oauth)
 
+
 @app.route('/')
 def home():
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+    token_info = cache_handler.get_cached_token()
+    if not token_info or not sp_oauth.validate_token(token_info):
         auth_url = sp_oauth.get_authorize_url()
         return redirect(auth_url)
     return redirect(url_for('top_stats'))
 
 @app.route('/callback')
 def callback():
-    sp_oauth.get_access_token(request.args['code'])
+    code = request.args.get('code')
+    if not code:
+        return "Error: Authorization code not provided."
+    sp_oauth.get_access_token(code)
     return redirect(url_for('top_stats'))
 
 @app.route('/top_stats')
 def top_stats():
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+    token_info = cache_handler.get_cached_token()
+    if not token_info or not sp_oauth.validate_token(token_info):
         auth_url = sp_oauth.get_authorize_url()
         return redirect(auth_url)
 
     username, photo_url = get_user_data(sp)
     popularity = get_popularity(sp, 50)
     artists_photos, tracks_photos = get_top_artists_tracks(sp)
+    curr_track_name, is_playback, curr_track_photo = get_current_track(sp)
     context = {
-        'username' : username,
-        'photo_url' : photo_url,
-        'artists_photos' : artists_photos,
-        'tracks_photos' : tracks_photos,
-        'popularity' : popularity
+        'username': username,
+        'photo_url': photo_url,
+        'artists_photos': artists_photos,
+        'tracks_photos': tracks_photos,
+        'popularity': popularity,
+        'curr_track_name': curr_track_name,
+        'is_playback': is_playback,
+        'curr_track_photo': curr_track_photo
     }
+    print(is_playback)
     return render_template('index.html', **context)
 
 if __name__ == '__main__':

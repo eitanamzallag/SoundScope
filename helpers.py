@@ -36,3 +36,11 @@ def get_popularity(sp, lim):
         sum += track['popularity']
 
     return int((sum/lim))
+
+def get_current_track(sp):
+    track = sp.currently_playing()
+    track_name = track['item']['name']
+    playback = track['is_playing']
+    track_photo = track['item']['album']['images'][0]['url']
+    return track_name, playback, track_photo
+

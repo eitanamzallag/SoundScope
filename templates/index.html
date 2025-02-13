@@ -6,8 +6,10 @@
     <title>SoundScope</title>
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   </head>
   <body>
+    <!-- create user profile -->
     <div class = 'user'>
         <container class="user-info">
             <img class="user-photo" src={{photo_url}} alt="That's you!">
@@ -16,34 +18,58 @@
         <h2 class="subtitle is-4"> popularity rating: {{ popularity }}/100 </h2>
     </div>
 
-        <!-- list out top artists -->
+    <!-- list out top artists -->
     <div class="top-artists">
-        <h2 class="subtitle is-2"> Your Top Artists </h2>
+        <h2 class="subtitle is-2 top-title"> Your Top Artists </h2>
         <ul>
             {% for artist, img_url in artists_photos.items() %}
                 <li>
-                    <span class="artist-name"><strong>{{ artist }}</strong></span>
-                    <figure class="image is-128x128">
-                        <img class="is-rounded" src="{{img_url}}" alt="{{ artist }}">
-                    </figure>   
+                    <div class="artist-container">
+                        <h5 class="title is-5 artist-name">{{ artist }}</h5>
+                        <figure class="image is-128x128">
+                            <img class="is-rounded" src="{{img_url}}" alt="{{ artist }}">
+                        </figure>
+                    </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
 
-        <!-- list out top tracks -->
-         <div class="top-tracks">
-            <h2 class="subtitle is-2"> Your Top Tracks </h2>
-            <ul>
-                {% for track, img_url in tracks_photos.items() %}
+    <!-- list out top tracks -->
+    <div class="top-tracks">
+        <h2 class="subtitle is-2 top-title"> Your Top Tracks </h2>
+        <ul>
+            {% for track, img_url in tracks_photos.items() %}
                 <li>
-                    <span class="track-name"><strong>{{ track }}</strong></span>
-                    <figure class="image is-128x128">
-                        <img class="is-rounded" src="{{img_url}}" alt="{{ track }}">
-                    </figure>   
+                    <div class="track-container">
+                        <h5 class="title is-5 track-name">{{ track }}</h5>
+                        <figure class="image is-128x128">
+                            <img class="is-rounded" src="{{img_url}}" alt="{{ track }}">
+                        </figure>
+                    </div>
                 </li>
-                {% endfor %}
-            </ul>
-         </div>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- create currently playing player -->
+    <div class="currently-playing">
+        <button class="image-button">
+            <figure class="image is-64x64">
+                <img class="curr_track_photo" src="{{ curr_track_photo }}" alt="Currently Playing">
+                {% if is_playback is true %}
+                    <!-- <i class="fa-solid fa-play overlay-icon"></i> -->
+                    <div class="sound-wave">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>                  
+                {% else %}
+                    <i class="fa-solid fa-pause overlay-icon"></i>
+                {% endif %}
+            </figure>
+        </button>
+        <h5 class = "title is-5 curr-track-name">{{ curr_track_name }} </h5>
+    </div>
 </body>
 </html>
