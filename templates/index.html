@@ -57,19 +57,20 @@
         <button class="image-button">
             <figure class="image is-64x64">
                 <img class="curr_track_photo" src="{{ curr_track_photo }}" alt="Currently Playing">
-                {% if is_playback is true %}
-                    <!-- <i class="fa-solid fa-play overlay-icon"></i> -->
-                    <div class="sound-wave">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>                  
-                {% else %}
+                <div class="sound-wave {% if not playback %} hidden {% endif %}">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>                              
+                                
+                {% if not playback %}
                     <i class="fa-solid fa-pause overlay-icon"></i>
                 {% endif %}
             </figure>
         </button>
         <h5 class = "title is-5 curr-track-name">{{ curr_track_name }} </h5>
     </div>
+
+    <script src="{{ url_for('static', filename='js/update_song.js') }}"></script>
 </body>
 </html>

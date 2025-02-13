@@ -120,7 +120,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 2px;
   height: 20px;
   z-index: 2;
 }

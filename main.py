@@ -1,5 +1,5 @@
 import os
-from flask import Flask, session, url_for, request, redirect, render_template
+from flask import Flask, session, url_for, request, redirect, render_template, jsonify
 from dotenv import load_dotenv
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
@@ -43,6 +43,10 @@ def callback():
     sp_oauth.get_access_token(code)
     return redirect(url_for('top_stats'))
 
+@app.route("/current_song")
+def current_song():
+    return jsonify(get_current_track(sp))
+
 @app.route('/top_stats')
 def top_stats():
     token_info = cache_handler.get_cached_token()
@@ -53,7 +57,7 @@ def top_stats():
     username, photo_url = get_user_data(sp)
     popularity = get_popularity(sp, 50)
     artists_photos, tracks_photos = get_top_artists_tracks(sp)
-    curr_track_name, is_playback, curr_track_photo = get_current_track(sp)
+    curr_track_name, playback, curr_track_photo = get_current_track(sp)
     context = {
         'username': username,
         'photo_url': photo_url,
@@ -61,10 +65,9 @@ def top_stats():
         'tracks_photos': tracks_photos,
         'popularity': popularity,
         'curr_track_name': curr_track_name,
-        'is_playback': is_playback,
+        'playback': playback,
         'curr_track_photo': curr_track_photo
     }
-    print(is_playback)
     return render_template('index.html', **context)
 
 if __name__ == '__main__':
