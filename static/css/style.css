@@ -1,4 +1,5 @@
 html, body {
+  background-color: #222222;
   height: 100%;
   width: 100%;
   margin: 0;
@@ -6,12 +7,22 @@ html, body {
   overflow: hidden;
 }
 
+/* Target all text-based elements */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, strong, em {
+  color: #FFFFFF !important;
+}
+
+
 .container {
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
+/* Override Bulma's container styles */
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .panel {
@@ -33,31 +44,10 @@ html, body {
   visibility: visible;
 }
 
-
-
-
-
-
-/* Override Bulma's container styles */
-.container {
-  max-width: none !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-
-
-
 /* Prevents body from constraining width */
 body {
   max-width: 100vw !important;
 }
-
-
-
-
-
-
 
 .user {
     display: flex;
@@ -120,6 +110,14 @@ body {
   border-radius: 50%;
   object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.tabbed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
 .currently-playing {

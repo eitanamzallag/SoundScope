@@ -14,14 +14,14 @@ def get_user_data(sp):
     return username, photo_url
 
 
-def get_top_artists_tracks(sp):
-    top_artists = sp.current_user_top_artists(limit=12)
+def get_top_artists_tracks(sp, range):
+    top_artists = sp.current_user_top_artists(limit=12, time_range = range)
     artists_photos = {}
     for i in top_artists['items']:
         artist = i['name']
         photo = i['images'][0]['url']
         artists_photos[artist] = photo
-    top_tracks = sp.current_user_top_tracks(limit=12)
+    top_tracks = sp.current_user_top_tracks(limit=12, time_range = range)
     tracks_photos = {}
     for i in top_tracks['items']:
         track = i['name']

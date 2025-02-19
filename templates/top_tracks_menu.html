@@ -1,0 +1,75 @@
+<!-- Tabs Navigation -->
+<div class="tabs is-fullwidth">
+    <ul>
+        <li class="is-active" data-tab="tracks-4w">
+            <a>
+                <span class="icon"><i class="fas fa-angle-left"></i></span>
+                <span>4 Weeks</span>
+            </a>
+        </li>
+        <li data-tab="tracks-6m">
+            <a>
+                <span class="icon"><i class="fas fa-angle-up"></i></span>
+                <span>6 Months</span>
+            </a>
+        </li>
+        <li data-tab="tracks-1y">
+            <a>
+                <span>1 Year</span>
+                <span class="icon"><i class="fas fa-angle-right"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Tabs Content -->
+<div class="tab-content is-active" id="tracks-4w">
+<div class="top-tracks">
+    <ul>
+        {% for track, img_url in tracks_photos_4w.items() %}
+            <li>
+                <div class="track-container">
+                    <h5 class="title is-5 track-name">{{ track }}</h5>
+                    <figure class="image is-128x128">
+                        <img class="is-rounded" src="{{img_url}}" alt="{{ track }}">
+                    </figure>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+<div class="tab-content" id="tracks-6m">
+<div class="top-tracks">
+    <ul>
+        {% for track, img_url in tracks_photos_6m.items() %}
+            <li>
+                <div class="track-container">
+                    <h5 class="title is-5 track-name">{{ track }}</h5>
+                    <figure class="image is-128x128">
+                        <img class="is-rounded" src="{{img_url}}" alt="{{ track }}">
+                    </figure>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+<div class="tab-content" id="tracks-1y">
+<div class="top-tracks">
+    <ul>
+        {% for track, img_url in tracks_photos_1y.items() %}
+            <li>
+                <div class="track-container">
+                    <h5 class="title is-5 track-name">{{ track }}</h5>
+                    <figure class="image is-128x128">
+                        <img class="is-rounded" src="{{img_url}}" alt="{{ track }}">
+                    </figure>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>

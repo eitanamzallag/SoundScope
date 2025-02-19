@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SoundScope</title>
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tabs_style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   </head>
@@ -22,41 +23,19 @@
         </section>
 
 
-        <section class="panel">
+        <section class="panel tabbed">
+            <h2 class="subtitle is-2 top-title"> Your Top Artists </h2>
             <!-- list out top artists -->
-            <div class="top-artists">
-                <h2 class="subtitle is-2 top-title"> Your Top Artists </h2>
-                <ul>
-                    {% for artist, img_url in artists_photos.items() %}
-                        <li>
-                            <div class="artist-container">
-                                <h5 class="title is-5 artist-name">{{ artist }}</h5>
-                                <figure class="image is-128x128">
-                                    <img class="is-rounded" src="{{img_url}}" alt="{{ artist }}">
-                                </figure>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+            {% include 'top_artists_menu.html' %}
 
+        </section>
+
+        <section class="panel tabbed">
+            <h2 class="subtitle is-2 top-title"> Your Top Tracks </h2>
             <!-- list out top tracks -->
-            <div class="top-tracks">
-                <h2 class="subtitle is-2 top-title"> Your Top Tracks </h2>
-                <ul>
-                    {% for track, img_url in tracks_photos.items() %}
-                        <li>
-                            <div class="track-container">
-                                <h5 class="title is-5 track-name">{{ track }}</h5>
-                                <figure class="image is-128x128">
-                                    <img class="is-rounded" src="{{img_url}}" alt="{{ track }}">
-                                </figure>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-                </section>
+            {% include 'top_tracks_menu.html' %}
+        </section>
+
     </div>
    
 
@@ -83,5 +62,6 @@
 
     <script src="{{ url_for('static', filename='js/scroll_control.js') }}"></script>
     <script src="{{ url_for('static', filename='js/update_song.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/top_tabs.js') }}"></script>
 </body>
 </html>
