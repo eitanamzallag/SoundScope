@@ -39,6 +39,8 @@ def get_popularity(sp, lim):
 
 def get_current_track(sp):
     track = sp.currently_playing()
+    if track is None:
+        return {"track_name": "No track playing", "playback": False, "track_photo": "https://www.goodfreephotos.com/public-domain-images/music-notes-vector-files.png.php"}
     track_name = track['item']['name']
     playback = track['is_playing']
     track_photo = track['item']['album']['images'][0]['url']

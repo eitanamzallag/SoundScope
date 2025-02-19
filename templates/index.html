@@ -43,7 +43,7 @@
 
     <!-- create currently playing player -->
     <div class="currently-playing">
-        <button class="image-button">
+        <button class="image-button" id="play-button">
             <figure class="image is-64x64">
                 <img class="curr_track_photo" src="{{ curr_track_photo }}" alt="Currently Playing">
                 <div class="sound-wave {% if not playback %} hidden {% endif %}">
@@ -57,11 +57,12 @@
                 {% endif %}
             </figure>
         </button>
-        <h5 class = "title is-5 curr-track-name">{{ curr_track_name }} </h5>
+        <h5 class = "title is-5 curr-track-name trackname">{{ curr_track_name }} </h5>
     </div>
 
     <script src="{{ url_for('static', filename='js/scroll_control.js') }}"></script>
     <script src="{{ url_for('static', filename='js/update_song.js') }}"></script>
     <script src="{{ url_for('static', filename='js/top_tabs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/playback.js') }}"></script>
 </body>
 </html>

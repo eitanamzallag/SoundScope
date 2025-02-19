@@ -48,6 +48,17 @@ def callback():
 def current_song():
     return jsonify(get_current_track(sp))
 
+@app.route('/play', methods=['POST'])
+def play():
+    playback = sp.current_playback()
+    if playback['is_playing']:
+        sp.pause_playback()
+        return jsonify({"status": "Playback paused"}), 200
+    else:
+        sp.start_playback()
+        return jsonify({"status": "Playback started"}), 200
+
+
 @app.route('/top_stats')
 def top_stats():
     token_info = cache_handler.get_cached_token()

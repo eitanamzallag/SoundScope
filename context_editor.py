@@ -8,6 +8,7 @@ def get_context():
     artists_photos_6m, tracks_photos_6m = get_top_artists_tracks(sp, "medium_term")
     artists_photos_1y, tracks_photos_1y = get_top_artists_tracks(sp, "long_term")
     curr_track_name, playback, curr_track_photo = get_current_track(sp)
+
     context = {
         'username': username,
         'photo_url': photo_url,
