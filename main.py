@@ -5,6 +5,7 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import FlaskSessionCacheHandler
 from helpers import *
+from context_editor import *
 
 load_dotenv()
 
@@ -54,20 +55,8 @@ def top_stats():
         auth_url = sp_oauth.get_authorize_url()
         return redirect(auth_url)
 
-    username, photo_url = get_user_data(sp)
-    popularity = get_popularity(sp, 50)
-    artists_photos, tracks_photos = get_top_artists_tracks(sp)
-    curr_track_name, playback, curr_track_photo = get_current_track(sp)
-    context = {
-        'username': username,
-        'photo_url': photo_url,
-        'artists_photos': artists_photos,
-        'tracks_photos': tracks_photos,
-        'popularity': popularity,
-        'curr_track_name': curr_track_name,
-        'playback': playback,
-        'curr_track_photo': curr_track_photo
-    }
+    context = get_context()
+
     return render_template('index.html', **context)
 
 if __name__ == '__main__':
