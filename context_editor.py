@@ -3,7 +3,7 @@ from main import sp
 
 def get_context():
     username, photo_url = get_user_data(sp)
-    popularity = get_popularity(sp, 50)
+    popularity, popularity_sentence = get_popularity(sp, 50)
     artists_photos_4w, tracks_photos_4w = get_top_artists_tracks(sp, "short_term")
     artists_photos_6m, tracks_photos_6m = get_top_artists_tracks(sp, "medium_term")
     artists_photos_1y, tracks_photos_1y = get_top_artists_tracks(sp, "long_term")
@@ -19,6 +19,7 @@ def get_context():
         'artists_photos_1y': artists_photos_1y,
         'tracks_photos_1y': tracks_photos_1y,
         'popularity': popularity,
+        'popularity_sentence': popularity_sentence,
         'curr_track_name': curr_track_name,
         'playback': playback,
         'curr_track_photo': curr_track_photo
