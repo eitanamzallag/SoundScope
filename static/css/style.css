@@ -76,6 +76,14 @@ body {
   padding: 20px;
 }
 
+.score-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
 .top-artists ul, .top-tracks ul {
   display: flex;
   flex-direction: row;
@@ -94,8 +102,7 @@ body {
 }
 
 .top-title {
-  margin-left: 3%;
-  align-content: center;
+  left: 50%;
 }
 
 .track-name, .artist-name {
@@ -244,4 +251,3 @@ body {
       height: 20px;
   }
 }
-

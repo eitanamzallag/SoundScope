@@ -1,4 +1,6 @@
-<div class="popularity">
-    <h3 class="subtitle is-3"> Your popularity rating is {{ popularity }}/100! </h3>
-    <h4 class="subtitle is-4"> {{popularity_sentence}} </h4>
+<div class="popularity" data-score="{{ popularity }}">
+    <div class="score-container">
+        <h4 class="score title is-4" id="score">0</h4>
+        <h4 class="description subtitle is-4" id="description">Calculating your music taste...</h4>
+    </div>    
 </div>
