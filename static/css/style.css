@@ -31,6 +31,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
@@ -48,6 +49,7 @@ body {
 
 .user {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -61,6 +63,7 @@ body {
 
 .user-info {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -70,6 +73,7 @@ body {
 
 .popularity {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: left;
   align-items: left;
@@ -78,6 +82,7 @@ body {
 
 .score-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -99,6 +104,7 @@ body {
 .top-artists li, .top-tracks li {
   margin: 10px;
   flex: 1 1 200px;
+  flex-wrap: wrap;
 }
 
 .top-title {
@@ -117,6 +123,7 @@ body {
 
 .artist-container, .track-container {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -132,6 +139,7 @@ body {
 
 .tabbed {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -144,6 +152,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -190,6 +199,7 @@ body {
 
 .scroll {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -205,6 +215,7 @@ body {
 
 .static {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -217,6 +228,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2px;
