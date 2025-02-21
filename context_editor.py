@@ -1,5 +1,5 @@
 from helpers import *
-from main import sp
+from spotify_client import sp  # Import from new file, avoiding circular import
 
 def get_context():
     username, photo_url = get_user_data(sp)
