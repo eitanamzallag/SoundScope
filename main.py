@@ -2,6 +2,7 @@ from flask import Flask, session, url_for, request, redirect, render_template, j
 from spotify_client import sp, cache_handler, sp_oauth
 from helpers import *
 from context_editor import *
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
