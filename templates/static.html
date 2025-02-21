@@ -1,0 +1,26 @@
+<div class="static">
+    <div class="down-arrow">
+        <!-- down arrow animation -->
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        <dotlottie-player src="https://lottie.host/a5f0de1d-2f10-4ead-8192-f155bdb42853/pLxhOaZM2H.lottie" background="transparent" speed="0.8" style="width: 64px; height: 64px" loop autoplay></dotlottie-player>
+    </div>
+    
+    <div class="currently-playing">   
+        <!-- currently playing -->
+        <button class="image-button" id="play-button">
+            <figure class="image is-64x64">
+                <img class="curr_track_photo" src="{{ curr_track_photo }}" alt="Currently Playing">
+                <div class="sound-wave {% if not playback %} hidden {% endif %}">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>                              
+                                
+                {% if not playback %}
+                    <i class="fa-solid fa-pause overlay-icon"></i>
+                {% endif %}
+            </figure>
+        </button>
+        <h5 class = "title is-5 curr-track-name trackname">{{ curr_track_name }} </h5>
+    </div>
+</div>
