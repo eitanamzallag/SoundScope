@@ -9,4 +9,4 @@ View your top artists and tracks, and find out how unique your music taste is wi
 - ⭐ **Music Popularity Score** with dynamic visuals  
 - 🎨 **Animated UI with GSAP & Flexbox**  
 
-Try it for yourself [here](https://your-app-name.onrender.com)!
+Try it for yourself [here](https://soundscope.onrender.com)!
