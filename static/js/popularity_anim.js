@@ -25,7 +25,7 @@ function startAnimation() {
         duration: 4, // Adjust for speed
         ease: "power2.out",
         onUpdate: function () {
-            scoreElement.innerText = Math.floor(currentScore.value);
+            scoreElement.innerText = Math.floor(currentScore.value) + "% popularity";
 
             // Calculate the color based on score progression
             let progress = currentScore.value / 100; // Normalize score (0 to 1)
