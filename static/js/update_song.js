@@ -21,8 +21,8 @@ function fetchCurrentSong() {
         .catch(error => console.error("Error fetching song:", error));
 }
 
-// Call the function every 2 seconds
-setInterval(fetchCurrentSong, 2);
+// Call the function every 5 seconds
+setInterval(fetchCurrentSong, 5);
 
 // Run immediately on page load
 document.addEventListener("DOMContentLoaded", fetchCurrentSong);
